@@ -56,6 +56,10 @@
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
     </style>
 </head>
 <body class="text-slate-800 h-screen flex overflow-hidden">
@@ -120,14 +124,19 @@
         const data = {
             overview: `
                 <div class="fade-in">
-                    <header class="mb-8">
-                        <h2 class="text-3xl font-bold text-nypd-blue">Infrastructure Transformation Overview</h2>
-                        <p class="text-slate-500 mt-2 text-lg">Consolidating footprint, reducing operational costs, and securing mission-critical applications.</p>
-                    </header>
+                    <!-- Hero Banner -->
+                    <div class="relative w-full h-48 md:h-64 mb-8 rounded-xl overflow-hidden shadow-md bg-nypd-blue">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80" alt="Technology Banner" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay">
+                        <div class="absolute inset-0 bg-gradient-to-r from-nypd-blue via-nypd-blue/80 to-transparent"></div>
+                        <div class="absolute inset-0 p-8 flex flex-col justify-center">
+                            <h2 class="text-3xl md:text-4xl font-bold text-white mb-2 text-shadow">Infrastructure Transformation Overview</h2>
+                            <p class="text-blue-100 text-lg max-w-2xl text-shadow">Consolidating footprint, reducing operational costs, and securing mission-critical applications.</p>
+                        </div>
+                    </div>
 
                     <!-- KPI Cards -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col items-center text-center">
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
                             <div class="p-3 bg-blue-50 text-blue-600 rounded-full mb-4">
                                 <i data-lucide="box" class="w-8 h-8"></i>
                             </div>
@@ -135,7 +144,7 @@
                             <p class="text-sm text-slate-500 mt-1 font-medium">Storage Footprint (RUs)</p>
                             <p class="text-xs text-slate-400 mt-2">1,341 down to 739</p>
                         </div>
-                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col items-center text-center">
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
                             <div class="p-3 bg-blue-50 text-blue-600 rounded-full mb-4">
                                 <i data-lucide="server" class="w-8 h-8"></i>
                             </div>
@@ -143,7 +152,7 @@
                             <p class="text-sm text-slate-500 mt-1 font-medium">Compute Footprint (RUs)</p>
                             <p class="text-xs text-slate-400 mt-2">1,404 down to 758</p>
                         </div>
-                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col items-center text-center">
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
                             <div class="p-3 bg-green-50 text-green-600 rounded-full mb-4">
                                 <i data-lucide="zap" class="w-8 h-8"></i>
                             </div>
@@ -151,7 +160,7 @@
                             <p class="text-sm text-slate-500 mt-1 font-medium">Power & Cooling Savings</p>
                             <p class="text-xs text-slate-400 mt-2">120kW down to 36kW</p>
                         </div>
-                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col items-center text-center">
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
                             <div class="p-3 bg-yellow-50 text-yellow-600 rounded-full mb-4">
                                 <i data-lucide="badge-dollar-sign" class="w-8 h-8"></i>
                             </div>
@@ -231,13 +240,18 @@
             `,
             servers: `
                 <div class="fade-in">
-                    <header class="mb-8">
-                        <div class="flex items-center gap-3 mb-2">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-bold uppercase tracking-wider">CP Approved / Executing</span>
-                        </div>
-                        <h2 class="text-3xl font-bold text-nypd-blue">Server Modernization</h2>
-                        <p class="text-slate-500 mt-2 text-lg">Replacing aging HPE Gen10 infrastructure with high-performance Dell PowerEdge 17G.</p>
-                    </header>
+                    <!-- Section Banner -->
+                    <div class="w-full h-32 md:h-40 rounded-xl overflow-hidden mb-8 relative bg-nypd-blue shadow-sm">
+                         <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-overlay" alt="Servers">
+                         <div class="absolute inset-0 bg-gradient-to-r from-nypd-blue to-transparent"></div>
+                         <div class="absolute inset-0 flex flex-col justify-center p-6 md:p-8">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="px-3 py-1 bg-blue-500 text-white rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">CP Approved / Executing</span>
+                            </div>
+                            <h2 class="text-3xl font-bold text-white text-shadow">Server Modernization</h2>
+                            <p class="text-blue-100 mt-1 hidden md:block">Replacing aging HPE Gen10 infrastructure with high-performance Dell PowerEdge 17G.</p>
+                         </div>
+                    </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         <!-- Left Col: Details -->
@@ -247,21 +261,21 @@
                                 <p class="text-slate-600 mb-4">The department’s aging server infrastructure, primarily HPE DL560 Gen10, is reaching end-of-support. This transition provides significant benefits for the Real Time Crime Center (RTCC), Domain Awareness System (DAS), and overall virtualization.</p>
                                 
                                 <h3 class="text-xl font-bold text-slate-800 mt-8 mb-4 border-b pb-2">Hardware Transition</h3>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="bg-red-50 p-4 rounded-lg border border-red-100">
-                                        <div class="text-red-800 font-bold mb-2 flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4"></i> Decommissioning</div>
-                                        <ul class="text-sm text-red-700 space-y-1">
-                                            <li>340x HP ProLiant DL560 Gen10</li>
-                                            <li>142x HP ProLiant DL580 Gen9</li>
-                                            <li>54x HP ProLiant DL380 Gen10</li>
-                                            <li>10x HP ProLiant DL580 Gen8</li>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="bg-red-50 p-5 rounded-lg border border-red-100">
+                                        <div class="text-red-800 font-bold mb-3 flex items-center gap-2"><i data-lucide="x-circle" class="w-5 h-5"></i> Decommissioning</div>
+                                        <ul class="text-sm text-red-700 space-y-2">
+                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-red-400"></div> 340x HP ProLiant DL560 Gen10</li>
+                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-red-400"></div> 142x HP ProLiant DL580 Gen9</li>
+                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-red-400"></div> 54x HP ProLiant DL380 Gen10</li>
+                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-red-400"></div> 10x HP ProLiant DL580 Gen8</li>
                                         </ul>
                                     </div>
-                                    <div class="bg-green-50 p-4 rounded-lg border border-green-100">
-                                        <div class="text-green-800 font-bold mb-2 flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i> Procuring</div>
-                                        <ul class="text-sm text-green-700 space-y-1">
-                                            <li>387x Dell PowerEdge 17G (vSphere)</li>
-                                            <li>48x Dell PowerEdge R7725 (Bare Metal)</li>
+                                    <div class="bg-green-50 p-5 rounded-lg border border-green-100">
+                                        <div class="text-green-800 font-bold mb-3 flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5"></i> Procuring</div>
+                                        <ul class="text-sm text-green-700 space-y-2">
+                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-green-500"></div> 387x Dell PowerEdge 17G (vSphere)</li>
+                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-green-500"></div> 48x Dell PowerEdge R7725 (Bare Metal)</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -282,7 +296,7 @@
                                             <span class="text-sm text-slate-600">RAM jumps from 2933MT/s to 6400MT/s for faster real-time reporting.</span>
                                         </div>
                                     </li>
-                                    <li class="bg-slate-50 p-4 rounded-lg border border-slate-200 flex gap-4 items-start">
+                                    <li class="bg-slate-50 p-4 rounded-lg border border-slate-200 flex gap-4 items-start md:col-span-2">
                                         <i data-lucide="database-zap" class="text-nypd-blue w-6 h-6 shrink-0"></i>
                                         <div>
                                             <strong class="block text-slate-800">4x I/O Performance</strong>
@@ -315,23 +329,24 @@
                                 </div>
                             </div>
 
-                            <div class="bg-nypd-blue text-white rounded-xl shadow-sm p-6">
-                                <h3 class="text-lg font-bold mb-4 border-b border-blue-800 pb-2">Consolidation Impact</h3>
-                                <ul class="space-y-3">
+                            <div class="bg-nypd-blue text-white rounded-xl shadow-sm p-6 relative overflow-hidden">
+                                <i data-lucide="bar-chart-3" class="absolute -right-4 -bottom-4 w-32 h-32 text-white opacity-10"></i>
+                                <h3 class="text-lg font-bold mb-4 border-b border-blue-800 pb-2 relative z-10">Consolidation Impact</h3>
+                                <ul class="space-y-4 relative z-10">
                                     <li class="flex justify-between items-center">
                                         <span class="text-blue-200 text-sm">Server Count</span>
-                                        <span class="font-bold text-lg text-nypd-gold">-115 Servers</span>
+                                        <span class="font-bold text-lg text-nypd-gold bg-blue-900/50 px-2 py-1 rounded">-115 Servers</span>
                                     </li>
                                     <li class="flex justify-between items-center">
                                         <span class="text-blue-200 text-sm">CPU Cores</span>
-                                        <span class="font-bold text-lg text-nypd-gold">-11,230 Cores</span>
+                                        <span class="font-bold text-lg text-nypd-gold bg-blue-900/50 px-2 py-1 rounded">-11,230 Cores</span>
                                     </li>
                                     <li class="flex justify-between items-center">
                                         <span class="text-blue-200 text-sm">Target Racks</span>
-                                        <span class="font-bold text-lg">-49 Net Racks</span>
+                                        <span class="font-bold text-lg bg-blue-900/50 px-2 py-1 rounded">-49 Net Racks</span>
                                     </li>
                                 </ul>
-                                <p class="text-xs text-blue-300 mt-4 italic">*Core reduction significantly lowers VMware vSphere licensing fees.</p>
+                                <p class="text-xs text-blue-300 mt-5 italic relative z-10">*Core reduction significantly lowers VMware vSphere licensing fees.</p>
                             </div>
                         </div>
                     </div>
@@ -339,13 +354,18 @@
             `,
             storage: `
                 <div class="fade-in">
-                    <header class="mb-8">
-                        <div class="flex items-center gap-3 mb-2">
-                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-bold uppercase tracking-wider">Planning Phase</span>
-                        </div>
-                        <h2 class="text-3xl font-bold text-nypd-blue">Data Center Storage Refresh</h2>
-                        <p class="text-slate-500 mt-2 text-lg">Upgrading 40% of the storage footprint. Migrating legacy VMAX, Unity, XtremIO to modern PowerMax & Isilon.</p>
-                    </header>
+                    <!-- Section Banner -->
+                    <div class="w-full h-32 md:h-40 rounded-xl overflow-hidden mb-8 relative bg-nypd-blue shadow-sm">
+                         <img src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=1200&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-overlay" alt="Storage">
+                         <div class="absolute inset-0 bg-gradient-to-r from-nypd-blue to-transparent"></div>
+                         <div class="absolute inset-0 flex flex-col justify-center p-6 md:p-8">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="px-3 py-1 bg-yellow-500 text-white rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">Planning Phase</span>
+                            </div>
+                            <h2 class="text-3xl font-bold text-white text-shadow">Data Center Storage Refresh</h2>
+                            <p class="text-blue-100 mt-1 hidden md:block">Migrating legacy VMAX, Unity, XtremIO to modern PowerMax & Isilon arrays.</p>
+                         </div>
+                    </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         <div class="lg:col-span-2 space-y-8">
@@ -357,21 +377,21 @@
                                     <div class="bg-slate-50 rounded-lg p-5 border border-slate-200">
                                         <h4 class="font-bold text-slate-800 mb-3 text-center border-b border-slate-300 pb-2">Legacy (Decommissioning)</h4>
                                         <ul class="text-sm space-y-2 text-slate-600">
-                                            <li><span class="font-bold text-slate-800">5x</span> VMAX Arrays</li>
-                                            <li><span class="font-bold text-slate-800">11x</span> Unity Arrays</li>
-                                            <li><span class="font-bold text-slate-800">8x</span> XtremIO Arrays</li>
-                                            <li><span class="font-bold text-slate-800">6x</span> VNX Arrays</li>
-                                            <li><span class="font-bold text-slate-800">2x</span> Data Domain Backups</li>
+                                            <li class="flex items-center justify-between"><span class="font-bold text-slate-800">5x</span> <span>VMAX Arrays</span></li>
+                                            <li class="flex items-center justify-between"><span class="font-bold text-slate-800">11x</span> <span>Unity Arrays</span></li>
+                                            <li class="flex items-center justify-between"><span class="font-bold text-slate-800">8x</span> <span>XtremIO Arrays</span></li>
+                                            <li class="flex items-center justify-between"><span class="font-bold text-slate-800">6x</span> <span>VNX Arrays</span></li>
+                                            <li class="flex items-center justify-between"><span class="font-bold text-slate-800">2x</span> <span>Data Domain Backups</span></li>
                                         </ul>
                                     </div>
                                     <div class="bg-blue-50 rounded-lg p-5 border border-blue-100">
                                         <h4 class="font-bold text-nypd-blue mb-3 text-center border-b border-blue-200 pb-2">Future State (Deploying)</h4>
                                         <ul class="text-sm space-y-2 text-blue-900">
-                                            <li><span class="font-bold text-nypd-blue">3x</span> PowerMax Arrays</li>
-                                            <li><span class="font-bold text-nypd-blue">1x</span> PowerMax Expansion</li>
-                                            <li><span class="font-bold text-nypd-blue">8x</span> Isilon Storage Arrays</li>
-                                            <li><span class="font-bold text-nypd-blue">4x</span> Data Domain Backups</li>
-                                            <li><span class="font-bold text-nypd-blue">2x</span> DD Expansions</li>
+                                            <li class="flex items-center justify-between"><span class="font-bold text-nypd-blue">3x</span> <span>PowerMax Arrays</span></li>
+                                            <li class="flex items-center justify-between"><span class="font-bold text-nypd-blue">1x</span> <span>PowerMax Expansion</span></li>
+                                            <li class="flex items-center justify-between"><span class="font-bold text-nypd-blue">8x</span> <span>Isilon Storage Arrays</span></li>
+                                            <li class="flex items-center justify-between"><span class="font-bold text-nypd-blue">4x</span> <span>Data Domain Backups</span></li>
+                                            <li class="flex items-center justify-between"><span class="font-bold text-nypd-blue">2x</span> <span>DD Expansions</span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -390,22 +410,22 @@
                                             </tr>
                                         </thead>
                                         <tbody class="text-sm text-slate-700 divide-y divide-slate-100">
-                                            <tr>
-                                                <td class="p-3 font-medium flex items-center gap-2"><i data-lucide="server" class="w-4 h-4"></i> DC Cabinets</td>
+                                            <tr class="hover:bg-slate-50">
+                                                <td class="p-3 font-medium flex items-center gap-2"><i data-lucide="server" class="w-4 h-4 text-slate-400"></i> DC Cabinets</td>
                                                 <td class="p-3">34</td>
-                                                <td class="p-3">11</td>
+                                                <td class="p-3 font-medium text-nypd-blue">11</td>
                                                 <td class="p-3 font-bold text-green-600">68% ▼</td>
                                             </tr>
-                                            <tr>
-                                                <td class="p-3 font-medium flex items-center gap-2"><i data-lucide="thermometer-snowflake" class="w-4 h-4"></i> Cooling (BTU/Hr)</td>
+                                            <tr class="hover:bg-slate-50">
+                                                <td class="p-3 font-medium flex items-center gap-2"><i data-lucide="thermometer-snowflake" class="w-4 h-4 text-slate-400"></i> Cooling (BTU/Hr)</td>
                                                 <td class="p-3">400,167</td>
-                                                <td class="p-3">123,311</td>
+                                                <td class="p-3 font-medium text-nypd-blue">123,311</td>
                                                 <td class="p-3 font-bold text-green-600">69% ▼</td>
                                             </tr>
-                                            <tr>
-                                                <td class="p-3 font-medium flex items-center gap-2"><i data-lucide="plug" class="w-4 h-4"></i> Power (W)</td>
+                                            <tr class="hover:bg-slate-50">
+                                                <td class="p-3 font-medium flex items-center gap-2"><i data-lucide="plug" class="w-4 h-4 text-slate-400"></i> Power (W)</td>
                                                 <td class="p-3">120,149</td>
-                                                <td class="p-3">36,145</td>
+                                                <td class="p-3 font-medium text-nypd-blue">36,145</td>
                                                 <td class="p-3 font-bold text-green-600">70% ▼</td>
                                             </tr>
                                         </tbody>
@@ -423,27 +443,30 @@
                                         <p class="text-3xl font-bold text-slate-800">$45.8M</p>
                                         <p class="text-xs text-slate-400 mt-1">Capital: $30.9M | Support: $14.5M</p>
                                     </div>
-                                    <div class="bg-green-50 p-4 rounded-lg mt-4">
-                                        <p class="text-sm font-semibold text-green-800 mb-1">Software TLA Savings</p>
+                                    <div class="bg-green-50 p-4 rounded-lg mt-4 border border-green-200">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <i data-lucide="trending-down" class="w-4 h-4 text-green-600"></i>
+                                            <p class="text-sm font-semibold text-green-800">Software TLA Savings</p>
+                                        </div>
                                         <p class="text-2xl font-bold text-green-600">$17.3M Saved</p>
-                                        <p class="text-xs text-green-700 mt-1">Cost reduced from $50.5M (BAU) down to $33.1M (TLA) over 5 years.</p>
+                                        <p class="text-xs text-green-700 mt-2 leading-relaxed">Cost reduced from $50.5M (BAU) down to $33.1M (TLA) over 5 years.</p>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
                                 <h3 class="text-lg font-bold text-slate-800 mb-4 border-b pb-2">Cyber Resilience</h3>
-                                <ul class="space-y-3 text-sm text-slate-600">
-                                    <li class="flex gap-2 items-start">
-                                        <i data-lucide="shield" class="w-4 h-4 text-nypd-blue shrink-0 mt-0.5"></i>
+                                <ul class="space-y-4 text-sm text-slate-600">
+                                    <li class="flex gap-3 items-start">
+                                        <i data-lucide="shield-check" class="w-5 h-5 text-nypd-blue shrink-0 mt-0.5"></i>
                                         <span><strong>Immutable Snapshots:</strong> Secure data erasure and Cyber Recovery Vaults with logical air-gapping.</span>
                                     </li>
-                                    <li class="flex gap-2 items-start">
-                                        <i data-lucide="shield" class="w-4 h-4 text-nypd-blue shrink-0 mt-0.5"></i>
+                                    <li class="flex gap-3 items-start">
+                                        <i data-lucide="file-check-2" class="w-5 h-5 text-nypd-blue shrink-0 mt-0.5"></i>
                                         <span><strong>Compliance:</strong> PowerMax is STIG-hardened and FIPS 140 compliant.</span>
                                     </li>
-                                    <li class="flex gap-2 items-start">
-                                        <i data-lucide="shield" class="w-4 h-4 text-nypd-blue shrink-0 mt-0.5"></i>
+                                    <li class="flex gap-3 items-start">
+                                        <i data-lucide="radar" class="w-5 h-5 text-nypd-blue shrink-0 mt-0.5"></i>
                                         <span><strong>Threat Detection:</strong> AI-driven real-time malware anomaly alerts.</span>
                                     </li>
                                 </ul>
@@ -454,73 +477,78 @@
             `,
             desktop: `
                 <div class="fade-in">
-                    <header class="mb-8">
-                        <div class="flex items-center gap-3 mb-2">
-                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-bold uppercase tracking-wider">Pilot Complete</span>
-                        </div>
-                        <h2 class="text-3xl font-bold text-nypd-blue">Field Desktop Refresh</h2>
-                        <p class="text-slate-500 mt-2 text-lg">Replacing legacy OptiPlex towers with Dell Pro Max Slim. Huge performance and security uplifts.</p>
-                    </header>
+                    <!-- Section Banner -->
+                    <div class="w-full h-32 md:h-40 rounded-xl overflow-hidden mb-8 relative bg-nypd-blue shadow-sm">
+                         <img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=1200&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-overlay" alt="Desktop Workspace">
+                         <div class="absolute inset-0 bg-gradient-to-r from-nypd-blue to-transparent"></div>
+                         <div class="absolute inset-0 flex flex-col justify-center p-6 md:p-8">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="px-3 py-1 bg-green-500 text-white rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">Pilot Complete</span>
+                            </div>
+                            <h2 class="text-3xl font-bold text-white text-shadow">Field Desktop Refresh</h2>
+                            <p class="text-blue-100 mt-1 hidden md:block">Huge performance uplifts with Dell Pro Max Slim replacing legacy OptiPlex towers.</p>
+                         </div>
+                    </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                         <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-                            <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><i data-lucide="timer" class="text-nypd-blue"></i> 47th Precinct Field Test</h3>
+                            <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2 border-b pb-2"><i data-lucide="timer" class="text-nypd-blue"></i> 47th Precinct Field Test</h3>
                             <p class="text-sm text-slate-500 mb-6">Side-by-side comparison between legacy OptiPlex 7010 and the new Dell Pro Max Slim (Intel Core Ultra).</p>
                             
-                            <div class="space-y-4">
+                            <div class="space-y-6">
                                 <!-- Progress Bar Comparison 1 -->
                                 <div>
-                                    <div class="flex justify-between text-sm mb-1">
-                                        <span class="font-medium">System Boot Time</span>
+                                    <div class="flex justify-between text-sm mb-2">
+                                        <span class="font-semibold text-slate-700">System Boot Time</span>
                                     </div>
                                     <div class="flex items-center gap-4">
-                                        <div class="w-full bg-slate-100 rounded-full h-4 overflow-hidden relative">
-                                            <div class="bg-red-400 h-4 absolute left-0" style="width: 100%;"></div>
-                                            <span class="absolute right-2 top-0 text-[10px] font-bold text-white leading-4 shadow-sm">4m 20s (Old)</span>
+                                        <div class="w-full bg-slate-100 rounded-full h-5 overflow-hidden relative border border-slate-200">
+                                            <div class="bg-red-400 h-5 absolute left-0" style="width: 100%;"></div>
+                                            <span class="absolute right-3 top-0 bottom-0 flex items-center text-[11px] font-bold text-white text-shadow">4m 20s (Old)</span>
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-4 mt-2">
-                                        <div class="w-full bg-slate-100 rounded-full h-4 overflow-hidden relative">
-                                            <div class="bg-green-500 h-4 absolute left-0" style="width: 8%;"></div>
-                                            <span class="absolute left-2 top-0 text-[10px] font-bold text-white leading-4">12s (New)</span>
+                                        <div class="w-full bg-slate-100 rounded-full h-5 overflow-hidden relative border border-slate-200">
+                                            <div class="bg-green-500 h-5 absolute left-0" style="width: 8%;"></div>
+                                            <span class="absolute left-3 top-0 bottom-0 flex items-center text-[11px] font-bold text-slate-800">12s (New)</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Progress Bar Comparison 2 -->
-                                <div class="pt-4">
-                                    <div class="flex justify-between text-sm mb-1">
-                                        <span class="font-medium">Load DAS 2.0</span>
+                                <div class="pt-2">
+                                    <div class="flex justify-between text-sm mb-2">
+                                        <span class="font-semibold text-slate-700">Load DAS 2.0</span>
                                     </div>
                                     <div class="flex items-center gap-4">
-                                        <div class="w-full bg-slate-100 rounded-full h-4 overflow-hidden relative">
-                                            <div class="bg-red-400 h-4 absolute left-0" style="width: 100%;"></div>
-                                            <span class="absolute right-2 top-0 text-[10px] font-bold text-white leading-4 shadow-sm">37s (Old)</span>
+                                        <div class="w-full bg-slate-100 rounded-full h-5 overflow-hidden relative border border-slate-200">
+                                            <div class="bg-red-400 h-5 absolute left-0" style="width: 100%;"></div>
+                                            <span class="absolute right-3 top-0 bottom-0 flex items-center text-[11px] font-bold text-white text-shadow">37s (Old)</span>
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-4 mt-2">
-                                        <div class="w-full bg-slate-100 rounded-full h-4 overflow-hidden relative">
-                                            <div class="bg-green-500 h-4 absolute left-0" style="width: 18%;"></div>
-                                            <span class="absolute left-2 top-0 text-[10px] font-bold text-white leading-4">7s (New)</span>
+                                        <div class="w-full bg-slate-100 rounded-full h-5 overflow-hidden relative border border-slate-200">
+                                            <div class="bg-green-500 h-5 absolute left-0" style="width: 18%;"></div>
+                                            <span class="absolute left-3 top-0 bottom-0 flex items-center text-[11px] font-bold text-slate-800">7s (New)</span>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <!-- Progress Bar Comparison 3 -->
-                                <div class="pt-4">
-                                    <div class="flex justify-between text-sm mb-1">
-                                        <span class="font-medium">Load Cameras (6)</span>
+                                <div class="pt-2">
+                                    <div class="flex justify-between text-sm mb-2">
+                                        <span class="font-semibold text-slate-700">Load Cameras (6)</span>
                                     </div>
                                     <div class="flex items-center gap-4">
-                                        <div class="w-full bg-slate-100 rounded-full h-4 overflow-hidden relative">
-                                            <div class="bg-red-400 h-4 absolute left-0" style="width: 100%;"></div>
-                                            <span class="absolute right-2 top-0 text-[10px] font-bold text-white leading-4 shadow-sm">22s (Old)</span>
+                                        <div class="w-full bg-slate-100 rounded-full h-5 overflow-hidden relative border border-slate-200">
+                                            <div class="bg-red-400 h-5 absolute left-0" style="width: 100%;"></div>
+                                            <span class="absolute right-3 top-0 bottom-0 flex items-center text-[11px] font-bold text-white text-shadow">22s (Old)</span>
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-4 mt-2">
-                                        <div class="w-full bg-slate-100 rounded-full h-4 overflow-hidden relative">
-                                            <div class="bg-green-500 h-4 absolute left-0" style="width: 40%;"></div>
-                                            <span class="absolute left-2 top-0 text-[10px] font-bold text-white leading-4">9s (New)</span>
+                                        <div class="w-full bg-slate-100 rounded-full h-5 overflow-hidden relative border border-slate-200">
+                                            <div class="bg-green-500 h-5 absolute left-0" style="width: 40%;"></div>
+                                            <span class="absolute left-3 top-0 bottom-0 flex items-center text-[11px] font-bold text-slate-800">9s (New)</span>
                                         </div>
                                     </div>
                                 </div>
@@ -533,21 +561,21 @@
                             </div>
                             <div class="p-6 flex-1 flex flex-col gap-6">
                                 <div class="flex gap-4">
-                                    <div class="bg-nypd-blue text-white p-3 rounded-lg h-fit"><i data-lucide="cpu" class="w-6 h-6"></i></div>
+                                    <div class="bg-blue-50 text-nypd-blue p-3 rounded-lg h-fit border border-blue-100"><i data-lucide="cpu" class="w-6 h-6"></i></div>
                                     <div>
                                         <h4 class="font-bold text-slate-800">Intel Core Ultra & DDR5</h4>
                                         <p class="text-sm text-slate-600 mt-1">Jumps multiple CPU generations ahead (from 6th/7th gen). Supports up to 128GB DDR5 and dedicated NPU for accelerating AI-enhanced applications.</p>
                                     </div>
                                 </div>
                                 <div class="flex gap-4">
-                                    <div class="bg-nypd-blue text-white p-3 rounded-lg h-fit"><i data-lucide="lock" class="w-6 h-6"></i></div>
+                                    <div class="bg-blue-50 text-nypd-blue p-3 rounded-lg h-fit border border-blue-100"><i data-lucide="lock" class="w-6 h-6"></i></div>
                                     <div>
                                         <h4 class="font-bold text-slate-800">Firmware Security</h4>
                                         <p class="text-sm text-slate-600 mt-1">Moves from basic TPM 1.2 to <strong>TPM 2.0 with SafeID and SafeBIOS</strong>. Provides off-host BIOS verification and resilience against firmware-level attacks.</p>
                                     </div>
                                 </div>
                                 <div class="flex gap-4">
-                                    <div class="bg-nypd-blue text-white p-3 rounded-lg h-fit"><i data-lucide="hard-drive" class="w-6 h-6"></i></div>
+                                    <div class="bg-blue-50 text-nypd-blue p-3 rounded-lg h-fit border border-blue-100"><i data-lucide="hard-drive" class="w-6 h-6"></i></div>
                                     <div>
                                         <h4 class="font-bold text-slate-800">Self-Encrypting Storage</h4>
                                         <p class="text-sm text-slate-600 mt-1">Opal/FIPS self-encrypting NVMe SSDs for stronger, hardware-based data protection without taxing the CPU.</p>
@@ -557,86 +585,92 @@
                         </div>
                     </div>
                     
-                    <div class="bg-nypd-blue text-white rounded-xl p-6 shadow-sm">
-                        <h3 class="font-bold text-xl mb-2 text-nypd-gold">Executive Takeaway</h3>
-                        <p class="text-blue-100">This refresh is an investment in endpoint resilience and productivity. It lowers security risk at the device layer, drastically reduces user downtime (officers waiting on computers), and provides a Windows 11-ready platform capable of supporting AI-enhanced workflows over the next 4-5 years.</p>
+                    <div class="bg-nypd-blue text-white rounded-xl p-8 shadow-md relative overflow-hidden">
+                        <i data-lucide="award" class="absolute -right-6 -bottom-6 w-40 h-40 text-white opacity-5"></i>
+                        <h3 class="font-bold text-2xl mb-3 text-nypd-gold relative z-10 flex items-center gap-2"><i data-lucide="lightbulb" class="w-6 h-6"></i> Executive Takeaway</h3>
+                        <p class="text-blue-100 text-lg leading-relaxed relative z-10 max-w-3xl">This refresh is an investment in endpoint resilience and productivity. It lowers security risk at the device layer, drastically reduces user downtime (officers waiting on computers), and provides a Windows 11-ready platform capable of supporting AI-enhanced workflows over the next 4-5 years.</p>
                     </div>
                 </div>
             `,
             quickwins: `
                 <div class="fade-in">
-                    <header class="mb-8">
-                        <div class="flex items-center gap-3 mb-2">
-                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-bold uppercase tracking-wider">In Progress</span>
-                        </div>
-                        <h2 class="text-3xl font-bold text-nypd-blue">Dell Technical Assessment: Quick Wins</h2>
-                        <p class="text-slate-500 mt-2 text-lg">Short-term operational optimizations requiring minimal cost but delivering high impact for stability and security.</p>
-                    </header>
+                    <!-- Section Banner -->
+                    <div class="w-full h-32 md:h-40 rounded-xl overflow-hidden mb-8 relative bg-slate-900 shadow-sm">
+                         <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80" class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-overlay" alt="Quick Wins Strategy">
+                         <div class="absolute inset-0 bg-gradient-to-r from-slate-900 to-transparent"></div>
+                         <div class="absolute inset-0 flex flex-col justify-center p-6 md:p-8">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="px-3 py-1 bg-purple-500 text-white rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">In Progress</span>
+                            </div>
+                            <h2 class="text-3xl font-bold text-white text-shadow">Dell Technical Assessment: Quick Wins</h2>
+                            <p class="text-slate-300 mt-1 hidden md:block">Short-term operational optimizations requiring minimal cost but delivering high impact.</p>
+                         </div>
+                    </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         
                         <!-- Data Protection (DPS) -->
-                        <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-                            <div class="bg-slate-100 px-4 py-3 border-b border-slate-200 flex justify-between items-center">
-                                <h3 class="font-bold text-slate-800 flex items-center gap-2"><i data-lucide="save" class="w-4 h-4 text-nypd-blue"></i> Data Protection</h3>
-                                <span class="text-xs font-bold bg-white px-2 py-1 rounded border">Est. 2-6 Mos</span>
+                        <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                            <div class="bg-slate-50 px-5 py-4 border-b border-slate-200 flex justify-between items-center">
+                                <h3 class="font-bold text-slate-800 flex items-center gap-2"><i data-lucide="save" class="w-5 h-5 text-nypd-blue"></i> Data Protection</h3>
+                                <span class="text-[10px] font-bold bg-white text-slate-500 px-2 py-1 rounded border uppercase tracking-wider">Est. 2-6 Mos</span>
                             </div>
-                            <div class="p-4 space-y-4">
-                                <div class="border-b pb-3">
+                            <div class="p-5 space-y-4">
+                                <div class="border-b border-slate-100 pb-4">
                                     <h4 class="font-semibold text-sm text-slate-800">VM Backup Cross-Replication</h4>
-                                    <p class="text-xs text-slate-500 mt-1">Migrate policies to target DR Data Domain systems. Driven by DPS Residents.</p>
+                                    <p class="text-sm text-slate-500 mt-1 leading-relaxed">Migrate policies to target DR Data Domain systems. Driven by DPS Residents.</p>
                                 </div>
-                                <div class="border-b pb-3">
+                                <div class="border-b border-slate-100 pb-4">
                                     <h4 class="font-semibold text-sm text-slate-800">Stabilize Computer Crimes Backups</h4>
-                                    <p class="text-xs text-slate-500 mt-1">Finish Gen5A config. Work forward/backward on DD1 & DD2.</p>
+                                    <p class="text-sm text-slate-500 mt-1 leading-relaxed">Finish Gen5A config. Work forward/backward on DD1 & DD2.</p>
                                 </div>
                                 <div>
                                     <h4 class="font-semibold text-sm text-slate-800">Simplify SQL Backups (PPDM)</h4>
-                                    <p class="text-xs text-slate-500 mt-1">Agent install, policy config, and performance validation with DBA team.</p>
+                                    <p class="text-sm text-slate-500 mt-1 leading-relaxed">Agent install, policy config, and performance validation with DBA team.</p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- PowerMax -->
-                        <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-                            <div class="bg-slate-100 px-4 py-3 border-b border-slate-200 flex justify-between items-center">
-                                <h3 class="font-bold text-slate-800 flex items-center gap-2"><i data-lucide="hard-drive" class="w-4 h-4 text-nypd-blue"></i> PowerMax & Network</h3>
-                                <span class="text-xs font-bold bg-white px-2 py-1 rounded border">Est. 1-2 Mos</span>
+                        <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                            <div class="bg-slate-50 px-5 py-4 border-b border-slate-200 flex justify-between items-center">
+                                <h3 class="font-bold text-slate-800 flex items-center gap-2"><i data-lucide="hard-drive" class="w-5 h-5 text-nypd-blue"></i> PowerMax & Network</h3>
+                                <span class="text-[10px] font-bold bg-white text-slate-500 px-2 py-1 rounded border uppercase tracking-wider">Est. 1-2 Mos</span>
                             </div>
-                            <div class="p-4 space-y-4">
-                                <div class="border-b pb-3">
+                            <div class="p-5 space-y-4">
+                                <div class="border-b border-slate-100 pb-4">
                                     <h4 class="font-semibold text-sm text-slate-800">Fiber Channel Ports Increase</h4>
-                                    <p class="text-xs text-slate-500 mt-1">Add FC OM3/OM4 connections to separate Production and Backup traffic.</p>
+                                    <p class="text-sm text-slate-500 mt-1 leading-relaxed">Add FC OM3/OM4 connections to separate Production and Backup traffic.</p>
                                 </div>
-                                <div class="border-b pb-3">
+                                <div class="border-b border-slate-100 pb-4">
                                     <h4 class="font-semibold text-sm text-slate-800">VMAX to PowerMax Migration</h4>
-                                    <p class="text-xs text-slate-500 mt-1">Free up VMAX. Expand MDC and PSAC II drives. Pending NYPD approval.</p>
+                                    <p class="text-sm text-slate-500 mt-1 leading-relaxed">Free up VMAX. Expand MDC and PSAC II drives. Pending NYPD approval.</p>
                                 </div>
-                                <div class="border-b pb-3">
+                                <div class="border-b border-slate-100 pb-4">
                                     <h4 class="font-semibold text-sm text-slate-800">CloudIQ Cyber Security</h4>
-                                    <p class="text-xs text-slate-500 mt-1">Knowledge transfer to implement analysis, reporting, and mitigation.</p>
+                                    <p class="text-sm text-slate-500 mt-1 leading-relaxed">Knowledge transfer to implement analysis, reporting, and mitigation.</p>
                                 </div>
                                 <div>
                                     <h4 class="font-semibold text-sm text-slate-800">DAS DCNM Update</h4>
-                                    <p class="text-xs text-slate-500 mt-1">Configure centralized NDFC instance for managing DAS SAN fabrics.</p>
+                                    <p class="text-sm text-slate-500 mt-1 leading-relaxed">Configure centralized NDFC instance for managing DAS SAN fabrics.</p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- UDS / PowerScale -->
-                        <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-                            <div class="bg-slate-100 px-4 py-3 border-b border-slate-200 flex justify-between items-center">
-                                <h3 class="font-bold text-slate-800 flex items-center gap-2"><i data-lucide="network" class="w-4 h-4 text-nypd-blue"></i> PowerScale (UDS)</h3>
-                                <span class="text-xs font-bold bg-white px-2 py-1 rounded border">Est. 2 Mos</span>
+                        <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                            <div class="bg-slate-50 px-5 py-4 border-b border-slate-200 flex justify-between items-center">
+                                <h3 class="font-bold text-slate-800 flex items-center gap-2"><i data-lucide="network" class="w-5 h-5 text-nypd-blue"></i> PowerScale (UDS)</h3>
+                                <span class="text-[10px] font-bold bg-white text-slate-500 px-2 py-1 rounded border uppercase tracking-wider">Est. 2 Mos</span>
                             </div>
-                            <div class="p-4 space-y-4">
-                                <div class="border-b pb-3">
+                            <div class="p-5 space-y-4">
+                                <div class="border-b border-slate-100 pb-4">
                                     <h4 class="font-semibold text-sm text-slate-800">Upgrade Core Clusters (OneFS 9.10)</h4>
-                                    <p class="text-xs text-slate-500 mt-1">Failover users, upgrade clusters with no impact, failback. Needs maintenance window.</p>
+                                    <p class="text-sm text-slate-500 mt-1 leading-relaxed">Failover users, upgrade clusters with no impact, failback. Needs maintenance window.</p>
                                 </div>
                                 <div>
                                     <h4 class="font-semibold text-sm text-slate-800">Superna Ransomware Implementation</h4>
-                                    <p class="text-xs text-slate-500 mt-1">Auditing and ransomware defense for Core PowerScale clusters. Superna providing temp licenses.</p>
+                                    <p class="text-sm text-slate-500 mt-1 leading-relaxed">Auditing and ransomware defense for Core PowerScale clusters. Superna providing temp licenses.</p>
                                 </div>
                             </div>
                         </div>
