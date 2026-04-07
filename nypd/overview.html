@@ -28,6 +28,8 @@
     </script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { background-color: #f8fafc; }
         .nav-item.active {
@@ -167,6 +169,22 @@
                             <h3 class="text-4xl font-bold text-slate-800">$17.3M</h3>
                             <p class="text-sm text-slate-500 mt-1 font-medium">Software TLA Savings</p>
                             <p class="text-xs text-slate-400 mt-2">Vs. Business as Usual</p>
+                        </div>
+                    </div>
+
+                    <!-- Charts Section -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                            <h3 class="font-bold text-lg text-slate-800 mb-4 border-b pb-2">Infrastructure Footprint Reduction</h3>
+                            <div class="relative h-64 w-full">
+                                <canvas id="overviewChart1"></canvas>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                            <h3 class="font-bold text-lg text-slate-800 mb-4 border-b pb-2">Power Consumption (kW)</h3>
+                            <div class="relative h-64 w-full">
+                                <canvas id="overviewChart2"></canvas>
+                            </div>
                         </div>
                     </div>
 
@@ -330,23 +348,32 @@
                             </div>
 
                             <div class="bg-nypd-blue text-white rounded-xl shadow-sm p-6 relative overflow-hidden">
-                                <i data-lucide="bar-chart-3" class="absolute -right-4 -bottom-4 w-32 h-32 text-white opacity-10"></i>
-                                <h3 class="text-lg font-bold mb-4 border-b border-blue-800 pb-2 relative z-10">Consolidation Impact</h3>
+                                <i data-lucide="leaf" class="absolute -right-4 -bottom-4 w-32 h-32 text-white opacity-10"></i>
+                                <h3 class="text-lg font-bold mb-4 border-b border-blue-800 pb-2 relative z-10">Efficiency Gains & Consolidation</h3>
                                 <ul class="space-y-4 relative z-10">
-                                    <li class="flex justify-between items-center">
-                                        <span class="text-blue-200 text-sm">Server Count</span>
-                                        <span class="font-bold text-lg text-nypd-gold bg-blue-900/50 px-2 py-1 rounded">-115 Servers</span>
+                                    <li class="flex justify-between items-center bg-blue-900/40 p-3 rounded-lg border border-blue-800/50">
+                                        <div class="flex items-center gap-3">
+                                            <i data-lucide="minimize-2" class="w-5 h-5 text-nypd-gold"></i>
+                                            <span class="text-blue-100 font-medium text-sm">Hardware Consolidated</span>
+                                        </div>
+                                        <span class="font-bold text-lg text-green-400">115 Servers</span>
                                     </li>
-                                    <li class="flex justify-between items-center">
-                                        <span class="text-blue-200 text-sm">CPU Cores</span>
-                                        <span class="font-bold text-lg text-nypd-gold bg-blue-900/50 px-2 py-1 rounded">-11,230 Cores</span>
+                                    <li class="flex justify-between items-center bg-blue-900/40 p-3 rounded-lg border border-blue-800/50">
+                                        <div class="flex items-center gap-3">
+                                            <i data-lucide="cpu" class="w-5 h-5 text-nypd-gold"></i>
+                                            <span class="text-blue-100 font-medium text-sm">Licensing Optimized</span>
+                                        </div>
+                                        <span class="font-bold text-lg text-green-400">11,230 Cores</span>
                                     </li>
-                                    <li class="flex justify-between items-center">
-                                        <span class="text-blue-200 text-sm">Target Racks</span>
-                                        <span class="font-bold text-lg bg-blue-900/50 px-2 py-1 rounded">-49 Net Racks</span>
+                                    <li class="flex justify-between items-center bg-blue-900/40 p-3 rounded-lg border border-blue-800/50">
+                                        <div class="flex items-center gap-3">
+                                            <i data-lucide="box" class="w-5 h-5 text-nypd-gold"></i>
+                                            <span class="text-blue-100 font-medium text-sm">Datacenter Space Freed</span>
+                                        </div>
+                                        <span class="font-bold text-lg text-green-400">49 Racks</span>
                                     </li>
                                 </ul>
-                                <p class="text-xs text-blue-300 mt-5 italic relative z-10">*Core reduction significantly lowers VMware vSphere licensing fees.</p>
+                                <p class="text-xs text-blue-300 mt-5 italic relative z-10">*Fewer cores significantly lower VMware vSphere licensing fees while saving on power and cooling.</p>
                             </div>
                         </div>
                     </div>
@@ -431,6 +458,9 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <div class="relative h-48 w-full mt-6">
+                                    <canvas id="storageChart"></canvas>
+                                </div>
                             </div>
                         </div>
 
@@ -442,6 +472,9 @@
                                         <p class="text-sm text-slate-500">Total Project Spend</p>
                                         <p class="text-3xl font-bold text-slate-800">$45.8M</p>
                                         <p class="text-xs text-slate-400 mt-1">Capital: $30.9M | Support: $14.5M</p>
+                                    </div>
+                                    <div class="mt-4 pt-4 border-t border-slate-100 relative h-56 w-full">
+                                        <canvas id="tlaChart"></canvas>
                                     </div>
                                     <div class="bg-green-50 p-4 rounded-lg mt-4 border border-green-200">
                                         <div class="flex items-center gap-2 mb-1">
@@ -495,63 +528,8 @@
                             <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2 border-b pb-2"><i data-lucide="timer" class="text-nypd-blue"></i> 47th Precinct Field Test</h3>
                             <p class="text-sm text-slate-500 mb-6">Side-by-side comparison between legacy OptiPlex 7010 and the new Dell Pro Max Slim (Intel Core Ultra).</p>
                             
-                            <div class="space-y-6">
-                                <!-- Progress Bar Comparison 1 -->
-                                <div>
-                                    <div class="flex justify-between text-sm mb-2">
-                                        <span class="font-semibold text-slate-700">System Boot Time</span>
-                                    </div>
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-full bg-slate-100 rounded-full h-5 overflow-hidden relative border border-slate-200">
-                                            <div class="bg-red-400 h-5 absolute left-0" style="width: 100%;"></div>
-                                            <span class="absolute right-3 top-0 bottom-0 flex items-center text-[11px] font-bold text-white text-shadow">4m 20s (Old)</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-4 mt-2">
-                                        <div class="w-full bg-slate-100 rounded-full h-5 overflow-hidden relative border border-slate-200">
-                                            <div class="bg-green-500 h-5 absolute left-0" style="width: 8%;"></div>
-                                            <span class="absolute left-3 top-0 bottom-0 flex items-center text-[11px] font-bold text-slate-800">12s (New)</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Progress Bar Comparison 2 -->
-                                <div class="pt-2">
-                                    <div class="flex justify-between text-sm mb-2">
-                                        <span class="font-semibold text-slate-700">Load DAS 2.0</span>
-                                    </div>
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-full bg-slate-100 rounded-full h-5 overflow-hidden relative border border-slate-200">
-                                            <div class="bg-red-400 h-5 absolute left-0" style="width: 100%;"></div>
-                                            <span class="absolute right-3 top-0 bottom-0 flex items-center text-[11px] font-bold text-white text-shadow">37s (Old)</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-4 mt-2">
-                                        <div class="w-full bg-slate-100 rounded-full h-5 overflow-hidden relative border border-slate-200">
-                                            <div class="bg-green-500 h-5 absolute left-0" style="width: 18%;"></div>
-                                            <span class="absolute left-3 top-0 bottom-0 flex items-center text-[11px] font-bold text-slate-800">7s (New)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Progress Bar Comparison 3 -->
-                                <div class="pt-2">
-                                    <div class="flex justify-between text-sm mb-2">
-                                        <span class="font-semibold text-slate-700">Load Cameras (6)</span>
-                                    </div>
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-full bg-slate-100 rounded-full h-5 overflow-hidden relative border border-slate-200">
-                                            <div class="bg-red-400 h-5 absolute left-0" style="width: 100%;"></div>
-                                            <span class="absolute right-3 top-0 bottom-0 flex items-center text-[11px] font-bold text-white text-shadow">22s (Old)</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-4 mt-2">
-                                        <div class="w-full bg-slate-100 rounded-full h-5 overflow-hidden relative border border-slate-200">
-                                            <div class="bg-green-500 h-5 absolute left-0" style="width: 40%;"></div>
-                                            <span class="absolute left-3 top-0 bottom-0 flex items-center text-[11px] font-bold text-slate-800">9s (New)</span>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="relative h-64 w-full">
+                                <canvas id="desktopChart"></canvas>
                             </div>
                         </div>
 
@@ -696,6 +674,114 @@
             
             // Re-initialize Lucide icons for newly injected HTML
             lucide.createIcons();
+            
+            // Render any applicable charts
+            initCharts(pageId);
+        }
+
+        // Keep track of active chart instances to destroy them on navigation (prevents hover glitches)
+        let activeCharts = [];
+
+        function initCharts(pageId) {
+            // Cleanup old charts
+            activeCharts.forEach(chart => chart.destroy());
+            activeCharts = [];
+
+            // Global Chart Styles
+            Chart.defaults.font.family = "'Inter', 'system-ui', 'sans-serif'";
+            Chart.defaults.color = '#64748b';
+
+            if (pageId === 'overview') {
+                const ctx1 = document.getElementById('overviewChart1');
+                if (ctx1) {
+                    activeCharts.push(new Chart(ctx1, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Storage (RUs)', 'Compute (RUs)'],
+                            datasets: [
+                                { label: 'Current State', data: [1341, 1404], backgroundColor: '#94a3b8' },
+                                { label: 'Future State', data: [739, 758], backgroundColor: '#002855' }
+                            ]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+                    }));
+                }
+
+                const ctx2 = document.getElementById('overviewChart2');
+                if (ctx2) {
+                    activeCharts.push(new Chart(ctx2, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Power Reclaimed (84kW)', 'Remaining Load (36kW)'],
+                            datasets: [{
+                                data: [84, 36],
+                                backgroundColor: ['#22c55e', '#002855'],
+                                hoverOffset: 4
+                            }]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+                    }));
+                }
+            } else if (pageId === 'storage') {
+                const ctxTla = document.getElementById('tlaChart');
+                if (ctxTla) {
+                    activeCharts.push(new Chart(ctxTla, {
+                        type: 'bar',
+                        data: {
+                            labels: ['5-Year Total Cost'],
+                            datasets: [
+                                { label: 'Business as Usual', data: [50.5], backgroundColor: '#ef4444' },
+                                { label: 'With Dell TLA', data: [33.1], backgroundColor: '#22c55e' }
+                            ]
+                        },
+                        options: { 
+                            responsive: true, 
+                            maintainAspectRatio: false,
+                            plugins: { 
+                                legend: { position: 'bottom' },
+                                tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: $${ctx.raw}M` } }
+                            },
+                            scales: { y: { beginAtZero: true, ticks: { callback: (val) => `$${val}M` } } }
+                        }
+                    }));
+                }
+
+                const ctxStorage = document.getElementById('storageChart');
+                if (ctxStorage) {
+                    activeCharts.push(new Chart(ctxStorage, {
+                        type: 'bar',
+                        data: {
+                            labels: ['DC Cabinets'],
+                            datasets: [
+                                { label: 'Current (34)', data: [34], backgroundColor: '#94a3b8' },
+                                { label: 'Proposed (11)', data: [11], backgroundColor: '#002855' }
+                            ]
+                        },
+                        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+                    }));
+                }
+            } else if (pageId === 'desktop') {
+                const ctxDesktop = document.getElementById('desktopChart');
+                if (ctxDesktop) {
+                    activeCharts.push(new Chart(ctxDesktop, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Boot Time', 'Load DAS 2.0', 'Load Cameras (6)'],
+                            datasets: [
+                                { label: 'Legacy OptiPlex', data: [260, 37, 22], backgroundColor: '#f87171' }, // 260s = 4m 20s
+                                { label: 'Dell Pro Max Slim', data: [12, 7, 9], backgroundColor: '#22c55e' }
+                            ]
+                        },
+                        options: { 
+                            indexAxis: 'y', 
+                            responsive: true, 
+                            maintainAspectRatio: false,
+                            plugins: { legend: { position: 'bottom' } },
+                            scales: { x: { title: { display: true, text: 'Time in Seconds (Lower is Better)' } } }
+                        }
+                    }));
+                }
+            }
         }
 
         // Initialize default view
